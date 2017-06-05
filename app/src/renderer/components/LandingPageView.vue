@@ -4,7 +4,7 @@
     <search></search>
     <detail name="test"></detail>
     <player></player>
-    <progress></progress>
+    <progress-bar played="60" total="120"></progress-bar>
     <current-page></current-page>
     <versions></versions>
     <links></links>
@@ -15,7 +15,7 @@
   import Search from './Search';
   import Detail from './Detail';
   import Player from './Player';
-  import Progress from './Progress';
+  import ProgressBar from './Progress';
   import CurrentPage from './LandingPageView/CurrentPage';
   import Links from './LandingPageView/Links';
   import Versions from './LandingPageView/Versions';
@@ -24,7 +24,7 @@
       Search,
       Detail,
       Player,
-      Progress,
+      ProgressBar,
       CurrentPage,
       Links,
       Versions,
