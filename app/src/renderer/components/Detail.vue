@@ -1,8 +1,15 @@
 <template>
-    <h1>{{name}}</h1>
+  <div>
+    <h3 v-text="current.title"></h3>
+    <img :src="current.artwork_url">
+  </div>
 </template>
 <script>
-    export default {
-      props: ['name'],
-    };
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters(['current']),
+  },
+};
 </script>

@@ -20,7 +20,7 @@
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run lint:fix && cd app && npm install"
   },
-  "author": "Greg Holguin <simulatedgreg@gmail.com>",
+  "author": "Chenggang Wang <wcgdream@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.8.0",
@@ -76,5 +76,7 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "soundmanager2": "^2.97.20170602"
+  }
 }

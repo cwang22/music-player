@@ -1,12 +1,12 @@
 <template>
     <div>
-        <span>{{ played }}</span>
-        <progress></progress>
-         <span> {{ total }}</span>
+        <span>{{ current }}</span>
+        <progress :value="progress"></progress>
+         <span>{{ total }}</span>
       </div>
 </template>
 <script>
-    export default {
-      props: ['played', 'total'],
-    };
+export default {
+  props: ['current', 'total', 'progress'],
+};
 </script>

@@ -7,3 +7,15 @@ export const decrementMain = ({ commit }) => {
 export const incrementMain = ({ commit }) => {
   commit(types.INCREMENT_MAIN_COUNTER);
 };
+
+export const updateTracks = ({ commit }, tracks) => {
+  commit('updateTracks', { tracks });
+};
+
+export const next = ({ commit }) => {
+  commit('next');
+};
+
+export const play = ({ commit }) => {
+  commit('play');
+};
