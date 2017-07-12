@@ -19,3 +19,7 @@ export const next = ({ commit }) => {
 export const play = ({ commit }) => {
   commit('play');
 };
+
+export const change = ({ commit }, track) => {
+  commit('change', { track });
+};

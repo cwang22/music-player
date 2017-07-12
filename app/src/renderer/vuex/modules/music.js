@@ -19,6 +19,9 @@ const mutations = {
   play(state) {
     state.playing = true;
   },
+  change(state, { track }) {
+    state.current = track;
+  },
 };
 
 export default {
