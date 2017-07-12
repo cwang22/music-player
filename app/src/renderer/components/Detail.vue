@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h3 v-text="current.title"></h3>
-    <img :src="current.artwork_url">
+    <h3 class="title" v-text="current.title"></h3>
+    <figure class="image is-128x128">
+        <img  :src="current.artwork_url">
+    </figure>
   </div>
 </template>
 <script>

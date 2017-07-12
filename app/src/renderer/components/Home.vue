@@ -1,11 +1,19 @@
 <template>
   <div>
-    <h1>Vue Player</h1>
-    <search></search>
-    <detail name="test"></detail>
-    <control></control>
-    <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
-    <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">Vue Player</h1>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <search></search>
+      <detail name="test"></detail>
+      <control></control>
+      <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
+      <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
+    </div>
   </div>
 </template>
 <script>
@@ -15,7 +23,9 @@ import Control from './Control';
 import ProgressBar from './Progress';
 
 import axios from 'axios';
-import { mapGetters } from 'vuex';
+import {
+  mapGetters,
+} from 'vuex';
 
 import helper from '../helper';
 
