@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <section class="section">
     <h3 class="title" v-text="current.title"></h3>
     <figure class="image is-128x128">
         <img  :src="current.artwork_url">
     </figure>
-  </div>
+  </section>
 </template>
 <script>
 import { mapGetters } from 'vuex';

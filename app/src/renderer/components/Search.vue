@@ -9,7 +9,7 @@
       </p>
     </div>
     <ul class="content">
-      <li v-for="item in list">
+      <li v-for="item in results">
         <a @click="play(item)" v-text="item.title"></a>
       </li>
     </ul>
@@ -23,7 +23,7 @@ export default {
     return {
       client_id: 'yhZSOFUtSUGz5OxWpiOhRi065lcrlAqI',
       query: '',
-      list: [],
+      results: [],
     };
   },
   watch: {
@@ -32,10 +32,10 @@ export default {
     },
   },
   methods: {
-    search: _.debounce(function test() {
+    search: _.debounce(function search() {
       axios.get(`https://api.soundcloud.com/tracks?client_id=${this.client_id}&q=${this.query}`)
         .then((response) => {
-          this.list = response.data;
+          this.results = response.data;
         });
     }, 500),
     play(item) {

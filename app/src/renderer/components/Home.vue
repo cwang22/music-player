@@ -9,7 +9,7 @@
     </section>
     <div class="container">
       <search></search>
-      <detail name="test"></detail>
+      <detail></detail>
       <control></control>
       <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
       <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
@@ -70,6 +70,7 @@ export default {
     },
     ended() {
       clearInterval(this.updateInterval);
+      this.$store.dispatch('next');
     },
     play() {
       if (this.playing) {
