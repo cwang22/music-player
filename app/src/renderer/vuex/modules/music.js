@@ -1,26 +1,39 @@
 const state = {
-  tracks: {},
-  current: {
-    stream_url: '',
-  },
+  tracks: [],
+  current: 0,
   playing: false,
 };
 
 const mutations = {
   updateTracks(state, { tracks }) {
     state.tracks = tracks;
-    const random = Math.floor(Math.random() * state.tracks.length);
-    state.current = state.tracks[random];
+  },
+  addTrack(state, { track }) {
+    state.tracks.push(track);
   },
   next(state) {
-    const random = Math.floor(Math.random() * state.tracks.length);
-    state.current = state.tracks[random];
+    if (state.current < state.tracks.length - 1) {
+      state.current++;
+    } else {
+      state.current = 0;
+    }
+  },
+  previous(state) {
+    if (state.current > 0) {
+      state.current--;
+    } else {
+      state.current = state.tracks.length - 1;
+    }
   },
   play(state) {
     state.playing = true;
   },
+  toggle(state) {
+    state.playing = !state.playing;
+  },
   change(state, { track }) {
-    state.current = track;
+    state.tracks.push(track);
+    state.current = state.tracks.length - 1;
   },
 };
 

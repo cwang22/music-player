@@ -1,19 +1,28 @@
 <template>
     <section class="section">
-        <button class="button" @click="play"><i class="fa fa-play"></i></button>
+        <button class="button" @click="previous"><i class="fa fa-backward"></i></button>
+        <button class="button" @click="toggle"><i v-if="playing" class="fa fa-pause"></i><i v-else="playing" class="fa fa-play"></i></button>
         <button class="button" @click="next"><i class="fa fa-forward"></i></button>
     </section>
 </template>
 <script>
-    export default {
-      methods: {
-        play() {
-          this.$store.dispatch('play');
-        },
-        next() {
-          this.$store.dispatch('next');
-        },
-      },
-    };
+export default {
+  computed: {
+    playing() {
+      return this.$store.state.music.playing;
+    },
+  },
+  methods: {
+    toggle() {
+      this.$store.dispatch('toggle');
+    },
+    next() {
+      this.$store.dispatch('next');
+    },
+    previous() {
+      this.$store.dispatch('previous');
+    },
+  },
+};
 </script>
 

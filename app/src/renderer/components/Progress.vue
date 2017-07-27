@@ -1,7 +1,6 @@
 <template>
   <section class="section">
       <span class="time">{{ current }}</span>
-      <slider :max="100" :step="1" is-fullwidth></slider>
       <progress class="progress is-primary" :value="progress"></progress>
       <span class="time">{{ total }}</span>
   </section>
