@@ -12,7 +12,7 @@
       <li v-for="item in results">
         <a @click="play(item)" v-text="item.title"></a>
       </li>
-      <a v-if="results.length > 0" class="button" @click="more">More</a>
+      <a v-if="results.length == 20" class="button" @click="more">More</a>
     </ul>
   </section>
 </template>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     search: _.debounce(function search() {
-      axios.get(`https://api.soundcloud.com/tracks?client_id=${this.client_id}&q=${this.query}&offset=${this.offset}`)
+      axios.get(`https://api.soundcloud.com/tracks?client_id=${this.client_id}&q=${this.query}&offset=${this.offset}&limit=20`)
         .then((response) => {
           this.results = response.data;
         });
@@ -44,7 +44,7 @@ export default {
       this.$store.dispatch('change', item);
     },
     more() {
-      this.offset += 10;
+      this.offset += 20;
       this.search();
     },
   },

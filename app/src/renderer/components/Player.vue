@@ -1,24 +1,11 @@
 <template>
-  <div>
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Vue Player</h1>
-        </div>
-      </div>
-    </section>
-    <div class="container">
-      <search></search>
-      <detail></detail>
-      <control></control>
-      <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
-      <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
-    </div>
-  </div>
+<div class="container">
+    <control></control>
+    <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
+    <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
+</div>
 </template>
 <script>
-import Search from './Search';
-import Detail from './Detail';
 import Control from './Control';
 import ProgressBar from './Progress';
 
@@ -31,12 +18,9 @@ import helper from '../helper';
 
 export default {
   components: {
-    Search,
-    Detail,
     Control,
     ProgressBar,
   },
-  name: 'home',
   data() {
     return {
       client_id: 'yhZSOFUtSUGz5OxWpiOhRi065lcrlAqI',

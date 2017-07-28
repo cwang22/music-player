@@ -2,7 +2,7 @@ export default [
   {
     path: '/',
     name: 'home',
-    component: require('components/Home'),
+    component: require('./pages/Home'),
   },
   {
     path: '*',
