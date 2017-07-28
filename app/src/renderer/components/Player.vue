@@ -59,8 +59,9 @@ export default {
     play() {
       if (this.playing) {
         this.$refs.player.play();
-        this.updateInterval = setInterval(this.update, 1000);
+        this.updateInterval = setInterval(this.update, 200);
       } else {
+        this.$refs.player.pause();
         clearInterval(this.updateInterval);
       }
     },
