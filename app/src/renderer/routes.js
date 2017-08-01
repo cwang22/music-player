@@ -1,8 +1,8 @@
 export default [
   {
-    path: '/home',
-    name: 'home',
-    component: require('./pages/Home'),
+    path: '/detail',
+    name: 'detail',
+    component: require('./pages/Detail'),
   },
   {
     path: '/playlist',
