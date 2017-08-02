@@ -32,10 +32,8 @@
   </div>
 </template>
 <script>
-import store from 'renderer/vuex/store';
 import Player from 'renderer/components/Player';
 export default {
-  store,
   components: {
     Player,
   },

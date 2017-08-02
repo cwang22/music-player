@@ -1,3 +1,11 @@
+import sc from '../services/soundcloud';
+
+export const init = ({ commit }) => {
+  sc.init().then(({ data }) => {
+    commit('updateTracks', data.tracks);
+  });
+};
+
 export const updateTracks = ({ commit }, tracks) => {
   commit('updateTracks', { tracks });
 };

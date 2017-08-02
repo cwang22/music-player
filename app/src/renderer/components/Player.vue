@@ -9,7 +9,6 @@
 import Control from './Control';
 import ProgressBar from './Progress';
 
-import axios from 'axios';
 import {
   mapGetters,
 } from 'vuex';
@@ -37,10 +36,7 @@ export default {
     },
   },
   created() {
-    axios.get(`https://api.soundcloud.com/playlists/209262931?client_id=${this.client_id}`)
-      .then((response) => {
-        this.$store.dispatch('updateTracks', response.data.tracks);
-      });
+    this.$store.dispatch('init');
   },
   watch: {
     playing() {

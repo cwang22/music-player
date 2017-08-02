@@ -5,7 +5,7 @@ const state = {
 };
 
 const mutations = {
-  updateTracks(state, { tracks }) {
+  updateTracks(state, tracks) {
     state.tracks = tracks;
   },
   change(state, { track }) {
