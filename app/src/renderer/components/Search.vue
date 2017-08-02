@@ -9,7 +9,7 @@
       </p>
     </div>
     <ul class="content">
-      <li v-for="item in results">
+      <li v-for="item in results" v-bind:key="item.id">
         <a @click="play(item)" v-text="item.title"></a>
       </li>
       <a v-if="results.length == 20" class="button" @click="more">More</a>

@@ -10,11 +10,22 @@
     <nav class="navbar">
       <div class="navbar-brand">
         <router-link to="playlist" class="navbar-item">Playlist</router-link>
-        <router-link to="detail" class="navbar-item">Now Playing</router-link>
+        <router-link to="nowplaying" class="navbar-item">Now Playing</router-link>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <p class="control has-icons-right">
+              <input class="input" type="text" placeholder="Search" v-model="query" v-on:keydown.enter.prevent='search'>
+              <span class="icon is-small is-right">
+                <i class="fa fa-search"></i>
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </nav>
     <div class="container">
-      <search></search>
       <router-view></router-view>
     </div>
     <player></player>
@@ -22,13 +33,21 @@
 </template>
 <script>
 import store from 'renderer/vuex/store';
-import Search from 'renderer/components/Search';
 import Player from 'renderer/components/Player';
 export default {
   store,
   components: {
-    Search,
     Player,
+  },
+  data() {
+    return {
+      query: '',
+    };
+  },
+  methods: {
+    search() {
+      this.$router.push({ path: 'search', query: { q: this.query } });
+    },
   },
 };
 </script>

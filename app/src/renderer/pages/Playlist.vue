@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(track, index) in tracks">
+        <tr v-for="(track, index) in tracks" v-bind:key="track.id">
           <td v-text="index + 1"></td>
           <td v-text="track.title"></td>
           <td class="action">
@@ -41,7 +41,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .table td {
   vertical-align: middle;
 }
