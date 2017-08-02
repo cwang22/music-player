@@ -19,6 +19,8 @@
         </tr>
       </tbody>
     </table>
+    <a v-if="offset > 0" class="button" @click="previous">Previous</a>
+    <a v-if="tracks.length == 20" class="button" @click="next">Next</a>
   </section>
 </template>
 <script>
@@ -54,7 +56,11 @@ export default {
     play(item) {
       this.$store.dispatch('change', item);
     },
-    more() {
+    previous() {
+      this.offset -= 20;
+      this.search();
+    },
+    next() {
       this.offset += 20;
       this.search();
     },
