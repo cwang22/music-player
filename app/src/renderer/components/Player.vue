@@ -1,14 +1,13 @@
 <template>
 <div class="container">
     <control></control>
-    <progress-bar :current="currentTime" :total="totalTime" :progress="progress"></progress-bar>
+    <slider v-bind="setting" v-model="progress"></slider>
     <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
 </div>
 </template>
 <script>
 import Control from './Control';
-import ProgressBar from './Progress';
-
+import Slider from 'vue-slider-component';
 import {
   mapGetters,
 } from 'vuex';
@@ -18,7 +17,7 @@ import helper from '../helper';
 export default {
   components: {
     Control,
-    ProgressBar,
+    Slider,
   },
   data() {
     return {
@@ -26,7 +25,13 @@ export default {
       updateInterval: null,
       currentTime: '00:00',
       totalTime: '00:00',
+      duration: 0,
       progress: 0,
+      setting: {
+        tooltip: false,
+        min: 0,
+        max: 100,
+      },
     };
   },
   computed: {
@@ -39,13 +44,21 @@ export default {
     this.$store.dispatch('init');
   },
   watch: {
+    progress(newValue, oldValue) {
+      if (Math.abs(newValue - oldValue) > 1) {
+        this.current = helper.formatTime(newValue);
+        this.$refs.player.currentTime = newValue;
+      }
+    },
     playing() {
       this.play();
     },
   },
   methods: {
     canplay() {
+      this.duration = this.$refs.player.duration;
       this.totalTime = helper.formatTime(this.$refs.player.duration);
+      this.setting.max = Number.parseInt(this.duration, 10);
       this.play();
     },
     ended() {
@@ -63,9 +76,8 @@ export default {
     },
     update() {
       const current = this.$refs.player.currentTime;
-      const duration = this.$refs.player.duration;
       this.currentTime = helper.formatTime(current);
-      this.progress = current / duration;
+      this.progress = Number.parseInt(current, 10);
     },
   },
 };

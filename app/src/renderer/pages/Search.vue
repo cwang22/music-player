@@ -79,6 +79,7 @@ export default {
 .action button {
   opacity: 0;
   margin-left: 0.5em;
+  transition: ease-out 0.5s;
 }
 
 tr:hover .action button {
