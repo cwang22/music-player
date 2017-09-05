@@ -46,7 +46,7 @@ export default {
       });
     }, 500),
     play(item) {
-      this.$store.dispatch('change', item);
+      this.$store.dispatch('play', item);
     },
     more() {
       this.offset += 20;

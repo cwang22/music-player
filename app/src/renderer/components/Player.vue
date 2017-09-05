@@ -37,7 +37,10 @@ export default {
   computed: {
     ...mapGetters(['current', 'playing']),
     url() {
-      return `${this.current.stream_url}?client_id=${this.client_id}`;
+      if (this.current) {
+        return `${this.current.stream_url}?client_id=${this.client_id}`;
+      }
+      return '';
     },
   },
   watch: {

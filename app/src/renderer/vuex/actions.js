@@ -2,20 +2,25 @@ import api from '../services/soundcloud';
 
 export const init = ({ commit }) => {
   api.get('playlists/209262931').then(({ data }) => {
-    commit('updateTracks', data.tracks);
+    commit('setTracks', data.tracks);
+    commit('setPlaylist', data.tracks.map(track => track.id));
+    commit('setCurrent', data.tracks[0].id);
+    // commit('updateTracks', data.tracks);
   });
 };
 
 export const updateTracks = ({ commit }, tracks) => {
-  commit('updateTracks', { tracks });
+  commit('setTracks', { tracks });
 };
 
 export const change = ({ commit }, track) => {
-  commit('change', { track });
+  commit('setTracks', [track]);
+  commit('addPlaylist', track.id);
+  commit('setCurrent', track.id);
 };
 
-export const remove = ({ commit }, index) => {
-  commit('remove', { index });
+export const remove = ({ commit }, track) => {
+  commit('remove', track.id);
 };
 
 export const next = ({ commit }) => {

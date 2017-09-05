@@ -1,36 +1,53 @@
+import Vue from 'vue';
+import _ from 'lodash';
 const state = {
-  tracks: [],
+  tracks: {},
+  playlist: [],
   current: 0,
   playing: false,
 };
 
 const mutations = {
-  updateTracks(state, tracks) {
-    state.tracks = tracks;
+  setTracks(state, tracks) {
+    tracks.forEach(item => {
+      if (item) {
+        Vue.set(state.tracks, item.id, item);
+      }
+    });
   },
-  change(state, { track }) {
-    if (typeof track === 'number') {
-      state.current = track;
-    } else {
-      state.tracks.push(track);
-      state.current = state.tracks.length - 1;
+
+  setPlaylist(state, ids) {
+    state.playlist = ids;
+  },
+
+  addPlaylist(state, id) {
+    if (!state.playlist.includes(id)) {
+      state.playlist.push(id);
     }
   },
-  remove(state, { index }) {
-    state.tracks.splice(index, 1);
+
+  setCurrent(state, id) {
+    state.current = id;
   },
+
+  remove(state, id) {
+    state.playlist = _.without(state.playlist, id);
+  },
+
   next(state) {
-    if (state.current < state.tracks.length - 1) {
-      state.current++;
+    const index = state.playlist.indexOf(state.current);
+    if (index === state.playlist.length - 1) {
+      state.current = state.playlist[0];
     } else {
-      state.current = 0;
+      state.current = state.playlist[index + 1];
     }
   },
   previous(state) {
-    if (state.current > 0) {
-      state.current--;
+    const index = state.playlist.indexOf(state.current);
+    if (index === 0) {
+      state.current = state.playlist[state.playlist.length - 1];
     } else {
-      state.current = state.tracks.length - 1;
+      state.current = state.playlist[index - 1];
     }
   },
   play(state) {
