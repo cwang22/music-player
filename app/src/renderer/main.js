@@ -9,7 +9,6 @@ import store from './vuex/store';
 Vue.use(Electron);
 Vue.use(Resource);
 Vue.use(Router);
-Vue.config.debug = true;
 
 const router = new Router({
   scrollBehavior: () => ({ y: 0 }),
@@ -22,4 +21,7 @@ new Vue({
   router,
   store,
   ...App,
+  created() {
+    this.$store.dispatch('init');
+  },
 }).$mount('#app');

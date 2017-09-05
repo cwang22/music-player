@@ -22,7 +22,6 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      client_id: 'yhZSOFUtSUGz5OxWpiOhRi065lcrlAqI',
       query: '',
       offset: 0,
       results: [],
@@ -35,10 +34,16 @@ export default {
   },
   methods: {
     search: _.debounce(function search() {
-      axios.get(`https://api.soundcloud.com/tracks?client_id=${this.client_id}&q=${this.query}&offset=${this.offset}&limit=20`)
-        .then((response) => {
-          this.results = response.data;
-        });
+      axios.get(
+        'https://api.soundcloud.com/tracks',
+        {
+          q: this.query,
+          offset:this.offset,
+          limit:20,
+        }
+      ).then((response) => {
+        this.results = response.data;
+      });
     }, 500),
     play(item) {
       this.$store.dispatch('change', item);

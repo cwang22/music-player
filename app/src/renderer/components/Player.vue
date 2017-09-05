@@ -40,9 +40,6 @@ export default {
       return `${this.current.stream_url}?client_id=${this.client_id}`;
     },
   },
-  created() {
-    this.$store.dispatch('init');
-  },
   watch: {
     progress(newValue, oldValue) {
       if (Math.abs(newValue - oldValue) > 1) {

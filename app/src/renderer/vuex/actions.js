@@ -1,7 +1,7 @@
-import sc from '../services/soundcloud';
+import api from '../services/soundcloud';
 
 export const init = ({ commit }) => {
-  sc.init().then(({ data }) => {
+  api.get('playlists/209262931').then(({ data }) => {
     commit('updateTracks', data.tracks);
   });
 };
