@@ -12,7 +12,7 @@
       <tbody>
         <tr v-for="(track, index) in playlist" v-bind:key="track.id">
           <td v-text="index + 1"></td>
-          <td v-text="track.title"></td>
+          <td><router-link :to="'/tracks/' + track.id">{{ track.title }}</router-link></td>
           <td class="action">
             <button class="button" @click="play(track)"><i class="fa fa-play"></i></button>
             <button class="button" @click="remove(track)"><i class="fa fa-trash"></i></button>
