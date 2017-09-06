@@ -17,7 +17,7 @@
           <div class="navbar-item">
             <p class="control has-icons-right">
               <input class="input" type="text" placeholder="Search" v-model="query" v-on:keydown.enter.prevent='search'>
-              <span class="icon is-small is-right">
+              <span class="icon is-small is-right" @click="search">
                 <i class="fa fa-search"></i>
               </span>
             </p>
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     search() {
-      this.$router.push({ path: 'search', query: { q: this.query } });
+      this.$router.push({ path: '/search', query: { q: this.query } });
     },
   },
 };

@@ -10,7 +10,7 @@ export const init = ({ commit }) => {
 };
 
 export const updateTracks = ({ commit }, tracks) => {
-  commit('setTracks', { tracks });
+  commit('setTracks', tracks);
 };
 
 export const change = ({ commit }, track) => {

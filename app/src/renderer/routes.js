@@ -15,6 +15,11 @@ export default [
     component: require('./pages/Search'),
   },
   {
+    path: '/tracks/:id(\\d+)',
+    name: 'tracks',
+    component: require('./pages/Track'),
+  },
+  {
     path: '*',
     redirect: '/playlist',
   },

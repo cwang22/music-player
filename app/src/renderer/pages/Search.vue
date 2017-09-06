@@ -12,7 +12,7 @@
       <tbody>
         <tr v-for="(track, index) in tracks" v-bind:key="track.id">
           <td v-text="index + 1"></td>
-          <td v-text="track.title"></td>
+          <td><router-link :to="'/tracks/' + track.id">{{ track.title }}</router-link></td>
           <td class="action">
             <button class="button" @click="play(track)"><i class="fa fa-play"></i></button>
           </td>
@@ -24,11 +24,10 @@
   </section>
 </template>
 <script>
-import axios from 'axios';
+import api from '../services/soundcloud';
 export default {
   data() {
     return {
-      client_id: 'yhZSOFUtSUGz5OxWpiOhRi065lcrlAqI',
       offset: 0,
       tracks: [],
     };
@@ -48,10 +47,16 @@ export default {
   },
   methods: {
     search() {
-      axios.get(`https://api.soundcloud.com/tracks?client_id=${this.client_id}&q=${this.query}&offset=${this.offset}&limit=20`)
-        .then((response) => {
-          this.tracks = response.data;
-        });
+      api.get('/tracks', {
+        params: {
+          q: this.query,
+          offset: this.offset,
+          limit: 20,
+        },
+      }).then((response) => {
+        this.tracks = response.data;
+        this.$store.dispatch('updateTracks', response.data);
+      });
     },
     play(item) {
       this.$store.dispatch('change', item);
