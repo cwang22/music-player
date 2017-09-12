@@ -1,9 +1,19 @@
 <template>
-<div class="container">
-    <control></control>
-    <slider v-bind="setting" v-model="progress"></slider>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column is-2">
+          <img :src="current && current.artwork_url ? current.artwork_url : 'http://via.placeholder.com/128?text=No+Image'" >
+        </div>
+        <div class="column is-10">
+          <h5 v-text="current ? current.title : ''" class="has-text-centered"></h5>
+          <control></control>
+          <slider v-bind="setting" v-model="progress"></slider>
+        </div>
+      </div>
+    </div>
     <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
-</div>
+  </footer>
 </template>
 <script>
 import Control from './Control';
@@ -37,10 +47,7 @@ export default {
   computed: {
     ...mapGetters(['current', 'playing']),
     url() {
-      if (this.current) {
-        return `${this.current.stream_url}?client_id=${this.client_id}`;
-      }
-      return '';
+      return this.current ? `${this.current.stream_url}?client_id=${this.client_id}` : '';
     },
   },
   watch: {
@@ -82,3 +89,15 @@ export default {
   },
 };
 </script>
+<style>
+  h5 {
+    margin-bottom: 1rem;
+  }
+  .footer {
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    padding: 3rem 1.5rem;
+
+  }
+</style>

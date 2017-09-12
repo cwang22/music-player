@@ -24,7 +24,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container" id="view">
             <router-view></router-view>
         </div>
         <player></player>
@@ -55,4 +55,8 @@ export default {
 @import '~bulma/bulma.sass';
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
+
+#view {
+  margin-bottom: 12rem;
+}
 </style>

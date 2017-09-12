@@ -1,9 +1,9 @@
 <template>
-    <section class="section">
+    <div id="control" class="has-text-centered">
         <button class="button" @click="previous"><i class="fa fa-backward"></i></button>
         <button class="button" @click="toggle"><i v-if="playing" class="fa fa-pause"></i><i v-else="playing" class="fa fa-play"></i></button>
         <button class="button" @click="next"><i class="fa fa-forward"></i></button>
-    </section>
+    </div>
 </template>
 <script>
 export default {
@@ -25,4 +25,9 @@ export default {
   },
 };
 </script>
+<style scopped>
+  #control {
+    margin-bottom:1rem;
+  }
+</style>
 
