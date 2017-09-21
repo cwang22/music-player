@@ -38,3 +38,7 @@ export const play = ({ commit }) => {
 export const toggle = ({ commit }) => {
   commit('toggle');
 };
+
+export const shuffle = ({ commit }) => {
+  commit('toggleShuffle');
+};

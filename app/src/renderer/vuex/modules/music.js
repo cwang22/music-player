@@ -5,6 +5,8 @@ const state = {
   playlist: [],
   current: 0,
   playing: false,
+  shuffleList: [],
+  isShuffle: false,
 };
 
 const mutations = {
@@ -14,6 +16,10 @@ const mutations = {
         Vue.set(state.tracks, item.id, item);
       }
     });
+  },
+  toggleShuffle(state) {
+    state.isShuffle = !state.isShuffle;
+    state.shuffleList = state.isShuffle ? _.shuffle(state.playlist) : [];
   },
 
   setPlaylist(state, ids) {
@@ -35,19 +41,21 @@ const mutations = {
   },
 
   next(state) {
-    const index = state.playlist.indexOf(state.current);
-    if (index === state.playlist.length - 1) {
-      state.current = state.playlist[0];
+    const list = state.isShuffle ? state.shuffleList : state.playlist;
+    const index = list.indexOf(state.current);
+    if (index === list.length - 1) {
+      state.current = list[0];
     } else {
-      state.current = state.playlist[index + 1];
+      state.current = list[index + 1];
     }
   },
   previous(state) {
-    const index = state.playlist.indexOf(state.current);
+    const list = state.isShuffle ? state.shuffleList : state.playlist;
+    const index = list.indexOf(state.current);
     if (index === 0) {
-      state.current = state.playlist[state.playlist.length - 1];
+      state.current = list[list.length - 1];
     } else {
-      state.current = state.playlist[index - 1];
+      state.current = list[index - 1];
     }
   },
   play(state) {
