@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(track, index) in playlist" v-bind:key="track.id">
-          <td v-text="index + 1"></td>
+        <tr v-for="(track, index) in currentPage" v-bind:key="track.id">
+          <td v-text="page * 10 + index - 9"></td>
           <td><router-link :to="'/tracks/' + track.id">{{ track.title }}</router-link></td>
           <td class="action">
             <button class="button" @click="play(track)"><i class="fa fa-play"></i></button>
@@ -20,14 +20,24 @@
         </tr>
       </tbody>
     </table>
+    <a v-if="page > 1" class="button" @click="page--">Previous</a>
+    <a v-if="hasNextPage()" class="button" @click="page++">Next</a>
   </section>
 </template>
 <script>
 import { mapGetters } from 'vuex';
 
 export default {
+  data() {
+    return {
+      page: 1,
+    };
+  },
   computed: {
     ...mapGetters(['playlist']),
+    currentPage() {
+      return this.playlist.slice((this.page - 1) * 10, this.page * 10);
+    },
   },
   name: 'playlist',
   methods: {
@@ -37,6 +47,9 @@ export default {
     },
     remove(track) {
       this.$store.dispatch('remove', track);
+    },
+    hasNextPage() {
+      return this.playlist.length > (10 * this.page);
     },
   },
 };
