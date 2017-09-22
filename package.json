@@ -58,6 +58,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "bulma": "^0.5.3",
+    "eslint-plugin-vue": "beta",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
