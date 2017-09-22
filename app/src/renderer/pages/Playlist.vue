@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(track, index) in currentPage" v-bind:key="track.id">
+        <tr v-for="(track, index) in currentPage" v-bind:key="track.id" :class="isCurrent(track.id) ? 'is-selected' : ''">
           <td v-text="page * 10 + index - 9"></td>
           <td><router-link :to="'/tracks/' + track.id">{{ track.title }}</router-link></td>
           <td class="action">
@@ -34,7 +34,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['playlist']),
+    ...mapGetters(['playlist', 'current']),
     currentPage() {
       return this.playlist.slice((this.page - 1) * 10, this.page * 10);
     },
@@ -50,6 +50,9 @@ export default {
     },
     hasNextPage() {
       return this.playlist.length > (10 * this.page);
+    },
+    isCurrent(id) {
+      return id === this.current.id;
     },
   },
 };
