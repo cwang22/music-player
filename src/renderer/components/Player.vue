@@ -51,7 +51,7 @@ export default {
   watch: {
     progress (newValue, oldValue) {
       if (Math.abs(newValue - oldValue) > 1) {
-        this.current = helper.formatTime(newValue)
+        this.currentTime = helper.formatTime(newValue)
         this.$refs.player.currentTime = newValue
       }
     },
