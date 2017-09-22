@@ -1,15 +1,7 @@
 import Vue from 'vue'
 import _ from 'lodash'
-const state = {
-  tracks: {},
-  playlist: [],
-  current: 0,
-  playing: false,
-  shuffleList: [],
-  isShuffle: false
-}
 
-const mutations = {
+export default {
   setTracks (state, tracks) {
     tracks.forEach(item => {
       if (item) {
@@ -64,9 +56,4 @@ const mutations = {
   toggle (state) {
     state.playing = !state.playing
   }
-}
-
-export default {
-  state,
-  mutations
 }

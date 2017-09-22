@@ -12,7 +12,7 @@ export default {
       return this.track.id === this.$store.getters.current.id
     },
     isInPlaylist () {
-      return this.$store.state.music.playlist.includes(this.track.id)
+      return this.$store.state.playlist.includes(this.track.id)
     }
   },
   filters: {

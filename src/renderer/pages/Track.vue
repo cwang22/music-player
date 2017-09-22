@@ -7,7 +7,7 @@ export default {
   components: { Detail },
   computed: {
     track () {
-      return this.$store.state.music.tracks[this.$route.params.id]
+      return this.$store.state.tracks[this.$route.params.id]
     }
   }
 }

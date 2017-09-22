@@ -10,12 +10,12 @@
 export default {
   computed: {
     playing () {
-      return this.$store.state.music.playing
+      return this.$store.state.playing
     },
     shuffleClass () {
       return [
         'button',
-        this.$store.state.music.isShuffle ? 'is-active' : ''
+        this.$store.state.isShuffle ? 'is-active' : ''
       ]
     }
   },
