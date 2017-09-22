@@ -5,10 +5,7 @@
   "globals": {
     "assert": true,
     "expect": true,
-    "should": true
-  },
-  "rules": {
-    "func-names": 0,
-    "prefer-arrow-callback": 0
+    "should": true,
+    "__static": true
   }
 }
