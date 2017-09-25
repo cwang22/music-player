@@ -35,8 +35,3 @@ export default {
   }
 }
 </script>
-<style scopped>
-#control {
-    margin-bottom: 1rem;
-}
-</style>

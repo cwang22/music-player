@@ -1,19 +1,30 @@
 <template>
-    <footer class="footer">
-        <div class="container">
-            <div class="columns is-mobile">
-                <div class="column is-2">
-                    <img :src="current && current.artwork_url ? current.artwork_url : 'http://via.placeholder.com/128?text=No+Image'">
-                </div>
-                <div class="column is-10">
-                    <h5 v-text="current ? current.title : ''" class="has-text-centered"></h5>
-                    <control></control>
-                    <slider v-bind="setting" v-model="progress"></slider>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-2 img-wrapper">
+          <img :src="current && current.artwork_url ? current.artwork_url : 'http://via.placeholder.com/128?text=No+Image'">
         </div>
-        <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
-    </footer>
+        <div class="column is-8">
+          <slider v-bind="playbackOptions" v-model="progress"></slider>
+          
+          <div class="columns inner">
+            <div class="column">
+              <h5 v-text="current ? current.title : ''"></h5>
+            </div>
+            <div class="column">
+              <control></control>
+            </div>
+          </div>
+        </div>
+        <div class="column is-2">
+          <slider id="volume" v-bind="volumeOptions" v-model="volume"></slider>          
+          <i :class="volumeClasses" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <audio ref="player" :volume="volume / 100" :src="url" @canplay="canplay" @ended="ended"></audio>
+  </footer>
 </template>
 <script>
 import Control from './Control'
@@ -35,17 +46,33 @@ export default {
       totalTime: '00:00',
       duration: 0,
       progress: 0,
-      setting: {
+      playbackOptions: {
+        tooltip: false,
+        min: 0,
+        max: 100
+      },
+      volume: 50,
+      volumeOptions: {
         tooltip: false,
         min: 0,
         max: 100
       }
+      
     }
   },
   computed: {
     ...mapGetters(['current', 'playing']),
     url () {
       return this.current ? `${this.current.stream_url}?client_id=${this.client_id}` : ''
+    },
+    volumeClasses () {
+      return [
+        'has-text-centered',
+        'fa',
+        this.volume === 0 ? 'fa-volume-off' : 
+        this.volume <= 50 ? 'fa-volume-down' :
+         'fa-volume-up'
+      ]
     }
   },
   watch: {
@@ -63,7 +90,7 @@ export default {
     canplay () {
       this.duration = this.$refs.player.duration
       this.totalTime = helper.formatTime(this.$refs.player.duration)
-      this.setting.max = Number.parseInt(this.duration, 10)
+      this.playbackOptions.max = Number.parseInt(this.duration, 10)
       this.play()
     },
     ended () {
@@ -87,15 +114,28 @@ export default {
   }
 }
 </script>
-<style>
-h5 {
-    margin-bottom: 1rem;
+<style scoped>
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 3rem 1.5rem;
+.img-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.inner .column {
+  text-align: center;
+}
+
+img {
+  max-height: 100px;
+}
+
+.fa {
+  display: block;
 }
 </style>
