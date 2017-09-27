@@ -51,7 +51,6 @@ export default {
         min: 0,
         max: 100
       },
-      volume: 50,
       volumeOptions: {
         tooltip: false,
         min: 0,
@@ -64,6 +63,14 @@ export default {
     ...mapGetters(['current', 'playing']),
     url () {
       return this.current ? `${this.current.stream_url}?client_id=${this.client_id}` : ''
+    },
+    volume: {
+      get () {
+        return this.$store.state.volume
+      },
+      set (value) {
+        this.$store.commit('updateVolume', value) 
+      }
     },
     volumeClasses () {
       return [

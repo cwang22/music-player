@@ -55,5 +55,8 @@ export default {
   },
   toggle (state) {
     state.playing = !state.playing
+  },
+  updateVolume (state, value) {
+    state.volume = value
   }
 }
