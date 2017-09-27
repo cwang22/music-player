@@ -1,21 +1,24 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-
+import initMenu from './menu'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+  global.__static = require('path')
+    .join(__dirname, '/static')
+    .replace(/\\/g, '\\\\')
 }
 
 let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
+const winURL =
+  process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080`
+    : `file://${__dirname}/index.html`
 
-function createWindow () {
+function createWindow() {
   /**
    * Initial window options
    */
@@ -23,8 +26,8 @@ function createWindow () {
     height: 750,
     useContentSize: true,
     width: 1000,
-    minWidth:800,
-    minHeight:600,
+    minWidth: 800,
+    minHeight: 600
   })
 
   mainWindow.loadURL(winURL)
@@ -32,6 +35,8 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  initMenu()
 }
 
 app.on('ready', createWindow)
@@ -47,6 +52,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
 
 /**
  * Auto Updater
