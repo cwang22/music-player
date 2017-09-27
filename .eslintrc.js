@@ -22,6 +22,7 @@ module.exports = {
     // override/add rules' settings here
     'vue/valid-v-if': 'error',
     // allow paren-less arrow functions
+    "func-style": 0,
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,

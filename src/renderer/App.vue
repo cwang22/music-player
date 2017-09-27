@@ -48,6 +48,14 @@ export default {
     back () {
       this.$router.go(-1)
     }
+  },
+  mounted () {
+      this.$store.watch(state => {
+        if(state.playing) return `Vue Player - ${state.tracks[state.current].title}`
+        return `Vue Player`
+      }, title => {
+          document.title = title
+      })
   }
 }
 </script>
