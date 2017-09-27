@@ -9,7 +9,7 @@ export default {
       }
     })
   },
-  toggleShuffle (state) {
+  shuffle (state) {
     state.isShuffle = !state.isShuffle
     state.shuffleList = state.isShuffle ? _.shuffle(state.playlist) : []
   },
@@ -58,5 +58,11 @@ export default {
   },
   updateVolume (state, value) {
     state.volume = value
+  },
+  volumeUp (state) {
+    state.volume = state.volume >= 90 ?  100 : state.volume + 10
+  },
+  volumeDown (state) {
+    state.volume = state.volume <= 10 ?  0 : state.volume - 10
   }
 }

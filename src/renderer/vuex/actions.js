@@ -41,5 +41,5 @@ export const toggle = ({ commit }) => {
 }
 
 export const shuffle = ({ commit }) => {
-  commit('toggleShuffle')
+  commit('shuffle')
 }

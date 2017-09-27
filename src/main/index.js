@@ -36,7 +36,7 @@ function createWindow() {
     mainWindow = null
   })
 
-  initMenu()
+  initMenu(mainWindow)
 }
 
 app.on('ready', createWindow)

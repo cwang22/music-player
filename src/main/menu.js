@@ -1,6 +1,6 @@
 import { Menu } from 'electron'
 
-export default function() {
+export default function(window) {
   const template = [
     {
       label: 'File',
@@ -24,16 +24,26 @@ export default function() {
       submenu: [
         {
           label: 'Next',
-          accelerator: 'CmdOrCtrl+Right'
+          accelerator: 'CmdOrCtrl+Right',
+          click() {
+            window.webContents.send('next')
+          }
         },
         {
           label: 'Previous',
-          accelerator: 'CmdOrCtrl+Left'
+          accelerator: 'CmdOrCtrl+Left',
+          click() {
+            window.webContents.send('previous')
+          }
+
         },
         { type: 'separator' },
         {
           label: 'Shuffle',
-          accelerator: 'CmdOrCtrl+S'
+          accelerator: 'CmdOrCtrl+S',
+          click() {
+            window.webContents.send('shuffle')
+          }
         },
         {
           label: 'Repeat',
@@ -42,11 +52,17 @@ export default function() {
         { type: 'separator' },
         {
           label: 'Volume Up',
-          accelerator: 'CmdOrCtrl+Up'
+          accelerator: 'CmdOrCtrl+Up',
+          click() {
+            window.webContents.send('volumeUp')
+          }
         },
         {
-          label: 'Volume Up',
-          accelerator: 'CmdOrCtrl+Down'
+          label: 'Volume Down',
+          accelerator: 'CmdOrCtrl+Down',
+          click() {
+            window.webContents.send('volumeDown')
+          }
         }
       ]
     },

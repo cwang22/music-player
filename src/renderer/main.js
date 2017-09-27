@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Electron from 'vue-electron'
+import ipc from './ipc'
 import Router from 'vue-router'
 
 import App from './App'
 import routes from './routes'
 import store from './vuex/store'
+
 Vue.use(Electron)
 Vue.use(Router)
 
@@ -15,7 +17,7 @@ const router = new Router({
 })
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   router,
   store,
   ...App,
@@ -23,3 +25,5 @@ new Vue({
     this.$store.dispatch('init')
   }
 }).$mount('#app')
+
+ipc(app)
