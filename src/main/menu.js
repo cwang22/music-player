@@ -3,11 +3,11 @@ import { Menu } from 'electron'
 export default function(window) {
   const template = [
     {
-      label: 'File',
+      label: '&File',
       submenu: [{ role: 'quit' }]
     },
     {
-      label: 'Edit',
+      label: '&Edit',
       submenu: [
         { role: 'undo' },
         { role: 'redo' },
@@ -20,7 +20,7 @@ export default function(window) {
       ]
     },
     {
-      label: 'Playback',
+      label: '&Playback',
       submenu: [
         {
           label: 'Next',
@@ -67,14 +67,15 @@ export default function(window) {
       ]
     },
     {
-      label: 'View',
+      label: '&View',
       submenu: [{ role: 'zoomin' }, { role: 'zoomout' }, { role: 'resetzoom' }]
     },
     {
+      label: '&Help',
       role: 'help',
       submenu: [
         {
-          label: 'Learn More'
+          label: 'About'
         }
       ]
     }
