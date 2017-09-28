@@ -5,7 +5,7 @@
     </button>
     <button class="button" @click="commit('toggle')">
       <i v-if="playing" class="fa fa-pause"></i>
-      <i v-else="playing" class="fa fa-play"></i>
+      <i v-else class="fa fa-play"></i>
     </button>
     <button :class="shuffleClass" @click="commit('shuffle')">
       <i class="fa fa-random"></i>
