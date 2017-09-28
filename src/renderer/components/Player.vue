@@ -7,18 +7,11 @@
         </div>
         <div class="column is-8">
           <slider v-bind="playbackOptions" v-model="progress"></slider>
-          
-          <div class="columns inner">
-            <div class="column">
-              <h5 v-text="current ? current.title : ''"></h5>
-            </div>
-            <div class="column">
-              <control></control>
-            </div>
-          </div>
+          <h5 v-text="current ? current.title : ''" :title="current ? current.title : ''"></h5>
+          <control></control>
         </div>
         <div class="column is-2">
-          <slider id="volume" v-bind="volumeOptions" v-model="volume"></slider>          
+          <slider id="volume" v-bind="volumeOptions" v-model="volume"></slider>
           <i :class="volumeClasses" aria-hidden="true"></i>
         </div>
       </div>
@@ -38,7 +31,7 @@ export default {
     Control,
     Slider
   },
-  data () {
+  data() {
     return {
       client_id: 'yhZSOFUtSUGz5OxWpiOhRi065lcrlAqI',
       updateInterval: null,
@@ -56,66 +49,66 @@ export default {
         min: 0,
         max: 100
       }
-      
+
     }
   },
   computed: {
     ...mapGetters(['current', 'playing']),
-    url () {
+    url() {
       return this.current ? `${this.current.stream_url}?client_id=${this.client_id}` : ''
     },
     volume: {
-      get () {
+      get() {
         return this.$store.state.volume
       },
-      set (value) {
-        this.$store.commit('updateVolume', value) 
+      set(value) {
+        this.$store.commit('updateVolume', value)
       }
     },
     repeat() {
-        return this.$store.state.repeat
+      return this.$store.state.repeat
     },
-    volumeClasses () {
+    volumeClasses() {
       return [
         'has-text-centered',
         'fa',
-        this.volume === 0 ? 'fa-volume-off' : 
-        this.volume <= 50 ? 'fa-volume-down' :
-         'fa-volume-up'
+        this.volume === 0 ? 'fa-volume-off' :
+          this.volume <= 50 ? 'fa-volume-down' :
+            'fa-volume-up'
       ]
     }
   },
   watch: {
-    progress (newValue, oldValue) {
+    progress(newValue, oldValue) {
       if (Math.abs(newValue - oldValue) > 1) {
         this.currentTime = helper.formatTime(newValue)
         this.$refs.player.currentTime = newValue
       }
     },
-    playing () {
+    playing() {
       this.play()
     }
   },
   methods: {
-    canplay () {
+    canplay() {
       this.duration = this.$refs.player.duration
       this.totalTime = helper.formatTime(this.$refs.player.duration)
       this.playbackOptions.max = Number.parseInt(this.duration, 10)
       this.play()
     },
-    ended () {
+    ended() {
       clearInterval(this.updateInterval)
       console.log('called')
-      if(this.repeat) {
+      if (this.repeat) {
         this.$refs.player.currentTime = 0
         this.play()
       } else {
-      console.log('called')
-        
+        console.log('called')
+
         this.$store.dispatch('next')
       }
     },
-    play () {
+    play() {
       if (this.playing) {
         this.$refs.player.play()
         this.updateInterval = setInterval(this.update, 200)
@@ -124,7 +117,7 @@ export default {
         clearInterval(this.updateInterval)
       }
     },
-    update () {
+    update() {
       const current = this.$refs.player.currentTime
       this.currentTime = helper.formatTime(current)
       this.progress = Number.parseInt(current, 10)
@@ -140,6 +133,12 @@ export default {
   padding: 0.5rem;
 }
 
+h5 {
+  overflow:hidden;
+  text-overflow: ellipsis;
+  height: 1.6em;
+  white-space: nowrap;
+}
 .img-wrapper {
   display: flex;
   align-items: center;
