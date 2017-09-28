@@ -4,6 +4,7 @@ export default {
   current: 0,
   playing: false,
   shuffleList: [],
-  isShuffle: false,
+  shuffle: false,
+  repeat: false,
   volume: 50
 }

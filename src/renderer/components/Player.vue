@@ -72,6 +72,9 @@ export default {
         this.$store.commit('updateVolume', value) 
       }
     },
+    repeat() {
+        return this.$store.state.repeat
+    },
     volumeClasses () {
       return [
         'has-text-centered',
@@ -102,7 +105,15 @@ export default {
     },
     ended () {
       clearInterval(this.updateInterval)
-      this.$store.dispatch('next')
+      console.log('called')
+      if(this.repeat) {
+        this.$refs.player.currentTime = 0
+        this.play()
+      } else {
+      console.log('called')
+        
+        this.$store.dispatch('next')
+      }
     },
     play () {
       if (this.playing) {

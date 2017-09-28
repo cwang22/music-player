@@ -45,7 +45,7 @@ export default {
   methods: {
     play (index) {
       this.$store.dispatch('change', index)
-      this.$store.dispatch('play')
+      this.$store.commit('play')
     },
     remove (track) {
       this.$store.dispatch('remove', track)

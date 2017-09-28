@@ -47,7 +47,10 @@ export default function(window) {
         },
         {
           label: 'Repeat',
-          accelerator: 'CmdOrCtrl+R'
+          accelerator: 'CmdOrCtrl+R',
+          click() {
+            window.webContents.send('repeat')
+          }
         },
         { type: 'separator' },
         {

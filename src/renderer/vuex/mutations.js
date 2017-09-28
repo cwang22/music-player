@@ -9,15 +9,20 @@ export default {
       }
     })
   },
+
   shuffle (state) {
-    state.isShuffle = !state.isShuffle
-    state.shuffleList = state.isShuffle ? _.shuffle(state.playlist) : []
+    state.shuffle = !state.shuffle
+    state.shuffleList = state.shuffle ? _.shuffle(state.playlist) : []
+  },
+
+  repeat (state) {
+    state.repeat = !state.repeat
   },
 
   setPlaylist (state, ids) {
     state.playlist = ids
   },
-
+  
   addPlaylist (state, id) {
     if (!state.playlist.includes(id)) {
       state.playlist.push(id)
@@ -33,7 +38,7 @@ export default {
   },
 
   next (state) {
-    const list = state.isShuffle ? state.shuffleList : state.playlist
+    const list = state.shuffle ? state.shuffleList : state.playlist
     const index = list.indexOf(state.current)
     if (index === list.length - 1) {
       state.current = list[0]
@@ -42,7 +47,7 @@ export default {
     }
   },
   previous (state) {
-    const list = state.isShuffle ? state.shuffleList : state.playlist
+    const list = state.shuffle ? state.shuffleList : state.playlist
     const index = list.indexOf(state.current)
     if (index === 0) {
       state.current = list[list.length - 1]

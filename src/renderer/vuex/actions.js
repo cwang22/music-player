@@ -23,23 +23,3 @@ export const remove = ({ commit, state }, track) => {
   commit('remove', track.id)
   if(state.current === track.id) commit('next')
 }
-
-export const next = ({ commit }) => {
-  commit('next')
-}
-
-export const previous = ({ commit }) => {
-  commit('previous')
-}
-
-export const play = ({ commit }) => {
-  commit('play')
-}
-
-export const toggle = ({ commit }) => {
-  commit('toggle')
-}
-
-export const shuffle = ({ commit }) => {
-  commit('shuffle')
-}
