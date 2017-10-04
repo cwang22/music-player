@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <audio ref="player" :volume="volume / 100" :src="url" @canplay="canplay" @ended="ended"></audio>
+    <audio ref="player" :src="url" @canplay="canplay" @ended="ended"></audio>
   </footer>
 </template>
 <script>
@@ -87,7 +87,8 @@ export default {
     },
     playing() {
       this.play()
-    }
+    },
+    '$store.state.volume': function() { this.$refs.player.volume = this.volume / 100 }
   },
   methods: {
     canplay() {
