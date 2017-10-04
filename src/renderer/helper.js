@@ -1,5 +1,5 @@
 export default {
-  formatTime (value) {
+  formatTime(value) {
     let seconds = Math.floor(value % 60)
     let minutes = Math.floor(value / 60)
 

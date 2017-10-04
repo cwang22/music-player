@@ -16,8 +16,12 @@
                         <router-link :to="'/tracks/' + track.id">{{ track.title }}</router-link>
                     </td>
                     <td class="action">
-                        <button class="button" @click="play(track)"><i class="fa fa-play"></i></button>
-                        <button class="button" @click="remove(track)"><i class="fa fa-trash"></i></button>
+                        <button class="button" @click="play(track)">
+                            <i class="fa fa-play"></i>
+                        </button>
+                        <button class="button" @click="remove(track)">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -30,33 +34,33 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      page: 1
-    }
-  },
-  computed: {
-    ...mapGetters(['playlist', 'current']),
-    currentPage () {
-      return this.playlist.slice((this.page - 1) * 10, this.page * 10)
-    }
-  },
-  name: 'playlist',
-  methods: {
-    play (index) {
-      this.$store.dispatch('change', index)
-      this.$store.commit('play')
+    data() {
+        return {
+            page: 1
+        }
     },
-    remove (track) {
-      this.$store.dispatch('remove', track)
+    computed: {
+        ...mapGetters(['playlist', 'current']),
+        currentPage() {
+            return this.playlist.slice((this.page - 1) * 10, this.page * 10)
+        }
     },
-    hasNextPage () {
-      return this.playlist.length > (10 * this.page)
-    },
-    isCurrent (id) {
-      return id === this.current.id
+    name: 'playlist',
+    methods: {
+        play(index) {
+            this.$store.dispatch('change', index)
+            this.$store.commit('play')
+        },
+        remove(track) {
+            this.$store.dispatch('remove', track)
+        },
+        hasNextPage() {
+            return this.playlist.length > (10 * this.page)
+        },
+        isCurrent(id) {
+            return id === this.current.id
+        }
     }
-  }
 }
 </script>
 <style scoped>

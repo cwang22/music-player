@@ -1,7 +1,7 @@
 import api from '../services/soundcloud'
 
 export const init = ({ commit, state }) => {
-  if(state.playlist.length === 0)
+  if (state.playlist.length === 0)
     api.get('playlists/209262931').then(({ data }) => {
       commit('setTracks', data.tracks)
       commit('setPlaylist', data.tracks.map(track => track.id))
@@ -21,5 +21,5 @@ export const change = ({ commit }, track) => {
 
 export const remove = ({ commit, state }, track) => {
   commit('remove', track.id)
-  if(state.current === track.id) commit('next')
+  if (state.current === track.id) commit('next')
 }

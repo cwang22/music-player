@@ -1,5 +1,6 @@
 <template>
-  <detail :track="current"></detail>
+  <detail :track="current">
+  </detail>
 </template>
 <script>
 import { mapGetters } from 'vuex'

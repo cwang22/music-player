@@ -21,7 +21,7 @@ const app = new Vue({
   router,
   store,
   ...App,
-  created () {
+  created() {
     this.$store.dispatch('init')
   }
 }).$mount('#app')
