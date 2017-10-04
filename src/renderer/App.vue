@@ -18,7 +18,9 @@
             </div>
         </nav>
         <div class="container" id="view">
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </div>
         <player></player>
     </div>
