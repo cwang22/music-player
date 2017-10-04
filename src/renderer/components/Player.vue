@@ -104,9 +104,7 @@ export default {
         this.$refs.player.currentTime = 0
         this.play()
       } else {
-        console.log('called')
-
-        this.$store.dispatch('next')
+        this.$store.commit('next')
       }
     },
     play() {
