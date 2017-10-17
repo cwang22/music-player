@@ -18,9 +18,9 @@
             </div>
         </nav>
         <div class="container" id="view">
-            <keep-alive>
+            <transition name="forward" mode="out-in">
                 <router-view></router-view>
-            </keep-alive>
+            </transition>
         </div>
         <player></player>
     </div>
@@ -61,5 +61,20 @@ $fa-font-path: "~font-awesome/fonts";
 
 #view {
     margin-bottom: 12rem;
+}
+
+.forward-leave-active,
+.forward-enter-active {
+    transition: all .3s ease;
+}
+
+.forward-enter {
+    transform: translateX(-10px);
+    opacity: 0;
+}
+
+.forward-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
 }
 </style>
