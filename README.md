@@ -1,6 +1,6 @@
 # music-player
 
-> An electron-vue project
+a music player based on Electron, Vue.js and SoundCloud HTTP API.
 
 #### Build Setup
 
